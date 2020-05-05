@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  me.alphar.core.service.TmUserDetailServiceImpl,\
+  me.alphar.core.config.TmOauth2FeignConfiguration,\
+  me.alphar.core.config.PermitAllUrlProperties,\
+  me.alphar.core.feign.fallback.FeignInnerUserServiceFallBackImpl,\
+  me.alphar.core.feign.factory.FeignInnerUserServiceFallBackFactory,\
+  me.alphar.core.ex.TmResourceExceptionEntryPoint,\
+  me.alphar.core.ex.TmAccessDeniedHandler
