@@ -2,12 +2,14 @@ package me.alphar.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import me.alphar.core.annotation.Comment;
 
 import java.time.LocalDate;
 
 @Data
 @TableName("inner_user")
+@EqualsAndHashCode(callSuper = true)
 public class InnerUser extends BaseEntity {
     @Comment("登录名称")
     private String loginName;

@@ -25,9 +25,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
         }
 
         TmUserDetail laUserDetails = (TmUserDetail) userDetails;
-        if (laUserDetails.getUserId() == 1) {
-            throw new AccountExpiredException("系统管理员不能直接登录");
-        }
+
         String password = usernamePasswordAuthenticationToken.getCredentials().toString();
         password = PasswordDecode.decryptPassword(laUserDetails.getUsername(), password);
         String md5Password = CommonUtil.getPasswordMD5(laUserDetails.getUserId(), password);

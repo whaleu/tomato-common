@@ -5,7 +5,6 @@ import me.alphar.core.Wrapper;
 import me.alphar.core.entity.InnerUser;
 import me.alphar.core.ex.BusinessException;
 import me.alphar.core.feign.FeignInnerUserService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -38,6 +37,28 @@ public class TmUserDetailServiceImpl implements TmUserDetailsService {
         }
         // 2. 将用户数据封装到 UserDetail 中，由 SpringSecurity 判断
 //        User.UserBuilder user = User.withUsername(s);
-        return new User(innerUser.getLoginName(), "{noop}" + innerUser.getPassword(), new ArrayList<>());
+        return getTmUserDetail(res);
+    }
+
+    private TmUserDetail getTmUserDetail(Res<InnerUser> res) {
+        if (res == null || res.getCode().equals(Wrapper.ERROR_CODE)) {
+            throw new BusinessException("获取用户失败");
+        }
+        InnerUser innerUser = res.getData();
+        if (innerUser == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
+        // new User(innerUser.getLoginName(), "{noop}" + innerUser.getPassword(), new ArrayList<>());
+        return new TmUserDetail(
+                innerUser.getTid(),
+                innerUser.getLoginName(),
+                innerUser.getPhone(),
+                innerUser.getLoginName(),
+                innerUser.getPassword(),
+                0 == innerUser.getState(),
+                true,
+                true,
+                true,
+                new ArrayList<>());
     }
 }

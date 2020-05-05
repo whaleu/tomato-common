@@ -13,7 +13,7 @@ public class IdGenerator {
     /**判断环境参数 server_num（启动服务时传递参数，代码服务的号码）格式是否为 ServerName-00 */
     private static final Pattern isServerNum = Pattern.compile("^.*[-][0-9]{1,2}$", Pattern.CASE_INSENSITIVE);
 
-    private static final LocalDateTime SYSTEM_MIN_DATE = LocalDateTime.of(1991, 1, 1, 0, 0);
+    private static final LocalDateTime SYSTEM_MIN_DATE = LocalDateTime.of(2020, 1, 1, 0, 0);
     private static Integer guid = 0;
     private static long serverId = 0;
 

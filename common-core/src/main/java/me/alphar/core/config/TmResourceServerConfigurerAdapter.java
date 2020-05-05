@@ -63,11 +63,11 @@ public class TmResourceServerConfigurerAdapter extends ResourceServerConfigurerA
      */
     private void getUserInfo(ResourceServerSecurityConfigurer resources) {
         DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
-        TmUserAuthenticationConverter userTokenConverter = new TmUserAuthenticationConverter();
+//        TmUserAuthenticationConverter userTokenConverter = new TmUserAuthenticationConverter();
 
         // 设置userDetailService
-        userTokenConverter.setUserDetailsService(userDetailsService);
-        accessTokenConverter.setUserTokenConverter(userTokenConverter);
+//        userTokenConverter.setUserDetailsService(userDetailsService);
+//        accessTokenConverter.setUserTokenConverter(userTokenConverter);
         remoteTokenServices.setRestTemplate(restTemplate);
         remoteTokenServices.setAccessTokenConverter(accessTokenConverter);
         resources.tokenServices(remoteTokenServices);

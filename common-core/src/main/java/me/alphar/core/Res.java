@@ -9,6 +9,8 @@ public class Res<T> {
     private String msg;
     private T data;
 
+    public Res() {}
+
     public Res(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;

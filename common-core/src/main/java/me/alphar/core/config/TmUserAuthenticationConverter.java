@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.provider.token.DefaultUserAuthenticat
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 
 public class TmUserAuthenticationConverter extends DefaultUserAuthenticationConverter {
@@ -21,6 +22,7 @@ public class TmUserAuthenticationConverter extends DefaultUserAuthenticationConv
         if (map.containsKey(USERNAME)) {
             Object principal = map.get(USERNAME);
             Collection<? extends GrantedAuthority> authorities = getAuthorities(map);
+            authorities = new HashSet<>();
             if (userDetailsService != null) {
                 UserDetails user = userDetailsService.loadUserByUsername((String) map.get(USERNAME));
                 authorities = user.getAuthorities();
