@@ -1,6 +1,7 @@
 package me.alphar.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
@@ -11,9 +12,9 @@ import java.time.LocalDateTime;
 @Data
 public class BaseEntity {
 
-    @TableId
     @Comment("主键")
     @TableField(fill = FieldFill.INSERT)
+    @TableId(type = IdType.INPUT)
     private Long tid;
 
     @Comment("创建时间")
