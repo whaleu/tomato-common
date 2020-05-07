@@ -8,6 +8,9 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.AES;
 import lombok.SneakyThrows;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 public class PasswordDecode {
     private static final String NOOP = "{noop}";
 
@@ -28,5 +31,16 @@ public class PasswordDecode {
         AES aes = new AES(Mode.CBC, Padding.NoPadding, key, iv);
         byte[] res = aes.decrypt(Base64.decode(password.getBytes(CharsetUtil.UTF_8)));
         return new String(res, CharsetUtil.UTF_8).trim();
+    }
+
+    public String encrypt(String userName, String password) {
+        String md5Key = SecureUtil.md5(userName).substring(8, 24);
+        byte[] key = md5Key.getBytes(StandardCharsets.UTF_8);
+        byte[] iv = md5Key.getBytes(StandardCharsets.UTF_8);
+        AES aes = new AES(Mode.CBC, Padding.NoPadding, key, iv);
+        byte[] bytes = password.getBytes(StandardCharsets.UTF_8);
+        byte[] bytes1 = Arrays.copyOf(bytes, 16);
+        byte[] encrypt = aes.encrypt(bytes1);
+        return Base64.encode(encrypt);
     }
 }

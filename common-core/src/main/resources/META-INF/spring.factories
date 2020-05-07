@@ -6,4 +6,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   me.alphar.core.feign.factory.FeignInnerUserServiceFallBackFactory,\
   me.alphar.core.ex.TmResourceExceptionEntryPoint,\
   me.alphar.core.ex.TmAccessDeniedHandler,\
-  me.alphar.core.config.FeignOkHttpConfig
+  me.alphar.core.config.FeignOkHttpConfig,\
+  me.alphar.core.config.ServerConfig
